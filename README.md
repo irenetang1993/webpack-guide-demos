@@ -27,7 +27,6 @@
 
 ### Summary
 * demo13和demo14的原理是一样的，区别在于谁去创建这个server。
-* demo13是通过在命令行运行webpack-dev-server，结合当前目录下webpack配置文件（默认webpack.config.js，也可通过 webpack-dev-server --config指定配置文件），
-* 由webpack-dev-server去创建的，具体创建过程参考node_modules\webpack-dev-server\bin\webpack-dev-server.js中的startDevServer
+* demo13是通过在命令行运行webpack-dev-server，结合当前目录下webpack配置文件（默认webpack.config.js，也可通过 webpack-dev-server --config指定配置文件），由webpack-dev-server去创建的，具体创建过程参考node_modules\webpack-dev-server\bin\webpack-dev-server.js中的startDevServer
 * 而demo14是通过自己引入相应的包（webpack-dev-server/webpack等）手动去创建一个server。
 
