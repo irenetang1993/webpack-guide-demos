@@ -30,3 +30,15 @@
 * demo13是通过在命令行运行webpack-dev-server，结合当前目录下webpack配置文件（默认webpack.config.js，也可通过 webpack-dev-server --config指定配置文件），由webpack-dev-server去创建的，具体创建过程参考node_modules\webpack-dev-server\bin\webpack-dev-server.js中的startDevServer
 * 而demo14是通过自己引入相应的包（webpack-dev-server/webpack等）手动去创建一个server。
 
+### Demo16 - Tree Shaking
+* 在mode: 'development'模式下，不设置optimization: { usedExports: true }打包后的文件copy到了bundle-no-usedExports.js中；
+* 在mode: 'development'模式下，设置optimization: { usedExports: true }打包后的文件copy到了bundle-with-usedExports.js中；
+* 在mode: 'none'模式下（npm run none），不添加usedExports: true打包后的文件copy到了bundle-none-mode.js中；
+* 可以对比看看这三个文件:
+* 1: mode: none VS mode: development：webpackBootstrap函数没什么区别，关键在于传入的实参，前者是数组，后者是一个以文件路径为key，模块函数为value的对象。
+* 2: 当设置optimization: { usedExports: true }：会通过注释指出该模块中哪些exports被使用了 & 哪些是无用的导出。例如： exports used: cube（被使用）; unused harmony export square（无用导出）。[optimization.usedExports](https://webpack.js.org/configuration/optimization/#optimizationusedexports)
+* 关于tree shaking的其他文章：
+* [Tree-Shaking性能优化实践 - 原理篇](https://juejin.im/post/5a4dc842518825698e7279a9)
+* [你的Tree-Shaking并没什么卵用](https://juejin.im/post/5a5652d8f265da3e497ff3de)
+* [Webpack 中的 sideEffects 到底该怎么用？](https://zhuanlan.zhihu.com/p/40052192)
+
